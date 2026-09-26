@@ -34,7 +34,7 @@ class _InfoScreenState extends State<InfoScreen> {
       if (resp.statusCode == 200) {
         final data = jsonDecode(resp.body);
         setState(() {
-          _backendStatus = 'Connected (${data['service'] ?? 'FastAPI'})';
+          _backendStatus = 'Connected (${data['service'] ?? 'Express.js'})';
           _isBackendHealthy = true;
           _isPinging = false;
         });

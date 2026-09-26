@@ -33,14 +33,14 @@ A modern, high-performance Flutter cryptocurrency research mobile application mo
 - **Portfolio Summary**: Displays total tracked coins and average 24h percentage return.
 - **Empty States**: Encourages exploration with a direct action button to browse markets.
 
-### 5. 🔌 Backend Architecture (Python FastAPI)
-- **FastAPI REST Service** located in `backend/main.py`.
+### 5. 🔌 Backend Architecture (Node.js & Express.js)
+- **Express.js REST Service** located in `backend/server.js`.
 - **Endpoints**:
   - `GET /health` - Service health status.
   - `GET /api/market-stats` - Global market cap, volume, dominance, and sentiment.
   - `GET /api/coins` - Filtered, sorted, and paginated coin market data.
-  - `GET /api/coins/{id}` - Comprehensive individual coin details.
-  - `GET /api/coins/{id}/chart?days={days}` - Historical timestamp/price points.
+  - `GET /api/coins/:coinId` - Comprehensive individual coin details.
+  - `GET /api/coins/:coinId/chart?days={days}` - Historical timestamp/price points.
   - `GET /api/trending` - Top gainers, losers, and trending coins.
 - **Resilient Fallback Mode**: If the backend is offline or CoinGecko rate-limits, the Flutter app automatically serves high-fidelity realistic data with zero downtime.
 
@@ -51,7 +51,8 @@ A modern, high-performance Flutter cryptocurrency research mobile application mo
 ```
 d:/flutterapp1/
 ├── backend/
-│   ├── main.py              # FastAPI REST API with caching & CoinGecko proxy
+│   ├── package.json         # Node.js dependencies (express, cors)
+│   ├── server.js            # Express.js REST API with caching & CoinGecko proxy
 │   └── run_backend.bat      # 1-click script to launch backend
 ├── lib/
 │   ├── models/
@@ -95,7 +96,7 @@ d:/flutterapp1/
 In a terminal window:
 ```bash
 cd backend
-python -m uvicorn main:app --host 127.0.0.1 --port 8000 --reload
+npm start
 ```
 *(Or double click `backend/run_backend.bat`)*
 
